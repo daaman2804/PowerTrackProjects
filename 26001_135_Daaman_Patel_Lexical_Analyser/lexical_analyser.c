@@ -159,6 +159,22 @@ Status lexical_analyser(File_List **head, Stack *stk)
                     continue;
                 }
 
+                else if (next == '*')
+                {
+                    int prev = 0;
+
+                    while ((ch = fgetc(fp)) != EOF)
+                    {
+                        if (prev == '*' && ch == '/')
+                            break;
+
+                        prev = ch;
+                    }
+
+                    continue;
+                }
+
+
                 ungetc(next, fp);
             }
 
